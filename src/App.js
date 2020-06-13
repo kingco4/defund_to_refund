@@ -1,26 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Title from './components/title'
+import TotalFunds from './components/totalFunds'
+import SliderBar from './components/sliderBar'
+
 function App() {
+  const [ funds, setFunds ] = useState(1000000000)
+  const [ percentage, setPercentage] = useState(0)
+
+  const handlePercentage = (value) => {
+    setPercentage(value)
+  }
+
   return (
     <div className="App">
 
       <header className="App-header">
-        <div>Welcome to Defund to Refund!!!</div>
-        <h1>Testing</h1>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Title />
+        <TotalFunds funds={funds} />
+        <SliderBar handlePercentage={handlePercentage}/>
+        <p>Percentage: {percentage}</p>
       </header>
     </div>
   );
